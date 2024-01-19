@@ -1,19 +1,23 @@
-import { Schema, model, SchemaTypes } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const categorySchema = new Schema(
   {
-    category: {
+    name: {
       type: "string",
       required: [true, "Category is Required"],
       unique: [true, "Category must be unique"],
       minlength: [3, "Category short name "],
       maxlength: [20, "Category long name "],
     },
-    receviedId: SchemaTypes.ObjectId,
-    senderId: SchemaTypes.ObjectId,
+    slug: {
+      type: "string",
+      lowercase: true,
+    },
+    image: String,
+    
   },
   { timestamps: true }
 );
 
-
-export const categoryModel = model("Category", categorySchema);
+const CategoryModel = model('Category' , categorySchema)
+export  {CategoryModel};

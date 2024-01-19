@@ -1,16 +1,14 @@
-import mongoose from "mongoose";
-import express from "express";
+import mongoose from 'mongoose';
 import "dotenv/config";
-export default mongoose;
 
-const app = express();
+export default mongoose;
 
 const url = process.env.MONGO_URL;
 
 mongoose
   .connect(url, {})
   .then(() => {
-    console.log("posses", process.env.MONGO_URL);
+    // console.log("posses", process.env.MONGO_URL);
     console.log("db connection established");
   })
   .catch((error) => {
@@ -18,20 +16,18 @@ mongoose
     process.exit(1);        //to stop node applications
   });
 
-mongoose.connection.on("connected", () => {
-  console.log("Mongoose Connected");
-});
-
-mongoose.connection.on("error", (err) => {
-  console.log(err.message);
-});
-
-mongoose.connection.on("disconnected", () => {
-  console.log("Mongoose Disconnected");
-});
-
+  mongoose.connection.on("connected", () => {
+    console.log("Mongoose Connected");
+  });
+  mongoose.connection.on("error", (err) => {
+    console.log(err.message);
+  });
+  
+  mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose Disconnected");
+  });
 process.on("SIGINT", async () => {
-  await mongoose.connection.close();
+  await connection.close();
   process.exit(0);
 });
 
