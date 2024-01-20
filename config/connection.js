@@ -27,7 +27,7 @@ mongoose
     console.log("Mongoose Disconnected");
   });
 process.on("SIGINT", async () => {
-  await connection.close();
+  await mongoose.connection.close();
   process.exit(0);
 });
 

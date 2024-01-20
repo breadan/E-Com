@@ -4,19 +4,18 @@ import 'dotenv/config'
 import morgan from 'morgan';
 import "./config/connection.js";
 import express from "express";
-
+import cors from "cors";
+import dotenv from 'dotenv';
 
 
 const port =  process.env.PORT || 8000
 const mode = process.env.NODE_ENV 
 
-// dotenv.config();
-
+dotenv.config();
 const app = express();
-app.use(categoryRouter);
-//middleware
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
+app.use(categoryRouter);
 
 if(process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
@@ -26,8 +25,6 @@ if(process.env.NODE_ENV === "development") {
 
 
 
-//router
-app.use('/api/v1/categories',categoryRouter);
 app.get("/", (req, res) => res.send(" World!"));
 
 
