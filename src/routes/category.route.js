@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCategory, deleteCategory, getCategories, getSpecificCategory, updateCategory } from "../modules/categoryService/category.controller.js";
+import { createCategory, deleteCategory, getCategories, getSpecificCategory, updateCategory } from "../modules/categoryController/category.controller.js";
 import express from "express";
 
 
