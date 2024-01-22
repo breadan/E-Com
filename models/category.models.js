@@ -7,7 +7,7 @@ const categorySchema = new Schema(
       required: [true, "Category is Required"],
       unique: [true, "Category must be unique"],
       minlength: [3, "Category short name "],
-      maxlength: [20, "Category long name "],
+      max_length: [20, "Category long name "],
     },
     slug: {
       type: "string",
