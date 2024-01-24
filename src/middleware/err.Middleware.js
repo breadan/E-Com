@@ -1,4 +1,5 @@
-
+//Handel Error in Different work environments
+//it handel error in express
 
 const globalError = (err, req, res, next) => {
   // console.error(err.stack);

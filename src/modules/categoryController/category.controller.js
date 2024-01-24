@@ -12,7 +12,7 @@ const createCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
   const existsCategory = await Category.findOne({ name });
   if (existsCategory) {
-    return next(new ApiError(`Category Already Exicts `, 404));
+    return next(new ApiError(`Category Already Exists `, 404));
   } else {
     const newCategory = await Category.create({ name, slug: slugify(name) });
     res.status(200).json({ newCategory });

@@ -1,3 +1,7 @@
+//to handel Error OutSide Express
+//the Error come Here from validator if it Catch Error
+
+
 import { validationResult } from "express-validator"
 
 const validatorMiddleware = (req, res, next) => {
