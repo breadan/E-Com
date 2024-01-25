@@ -1,13 +1,49 @@
 import express from "express";
-import { createSubCategory } from "../modules/subCategory/subCategory.controller.js";
-import { createSubCategoryValidator } from "../../utils/validator/subCategory.validator.js";
+import {
+  createSubCategory,
+  deleteSubCategory,
+  getSpecificSubCategory,
+  getSubCategories,
+  updateSubCategory,
+} from "../modules/subCategory/subCategory.controller.js";
+import {
+  createSubCategoryValidator,
+  deleteSubCategoryValidator,
+  getSubCategoryValidator,
+  updateSubCategoryValidator,
+} from "../../utils/validator/subCategory.validator.js";
+
 const subCategoryRouter = express.Router();
 
 //[x] post: /subCategory
 subCategoryRouter.post(
-  "/api/v1/subCategories",
+  "/api/v1/createSubCategory",
   createSubCategoryValidator,
   createSubCategory
 );
 
+//[x] get: /subCategories
+subCategoryRouter.get(
+  "/api/v1/getSubCategories",
+  getSubCategoryValidator,
+  getSubCategories
+);
+//[x] get:id /subCategories
+subCategoryRouter.get(
+  "/api/v1/subCategory/:id",
+  getSubCategoryValidator,
+  getSpecificSubCategory
+);
+//[x] get:id /subCategories
+subCategoryRouter.put(
+  "/api/v1/updateSubCategory/:id",
+  updateSubCategoryValidator,
+  updateSubCategory
+);
+//[x] get:id /subCategories
+subCategoryRouter.delete(
+  "/api/v1/deleteSubCategory/:id",
+  deleteSubCategoryValidator,
+  deleteSubCategory
+);
 export default subCategoryRouter;

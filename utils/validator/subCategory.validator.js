@@ -15,11 +15,15 @@ const createSubCategoryValidator = [
   check("name")
     .notEmpty()
     .withMessage("SubCategory Required")
-    .isLength({ min: 3 })
+    .isLength({ min: 2 })
     .withMessage("Too short")
     .isLength({ max: 32 })
     .withMessage("Too Long"),
-  check("Category").isMongoId().withMessage("SubCategory ID Required"),
+  check("category")
+    .notEmpty()
+    .withMessage("subCategory must be belong to Category")
+    .isMongoId()
+    .withMessage("SubCategory ID Required"),
   validatorMiddleware,
 ];
 

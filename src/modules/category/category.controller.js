@@ -33,7 +33,7 @@ const getCategories = asyncHandler(async (req, res, next) => {
   const skip = (page - 1) * limit;
 
   const categories = await Category.find({})
-    .select("-_id")
+    // .select("-_id")
     .skip(skip)
     .limit(limit);
   if (!categories) {

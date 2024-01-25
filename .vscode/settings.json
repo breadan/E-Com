@@ -37,6 +37,11 @@
       "background": "#00ff0080",
       "iconColour": "#00ff0080",
       "icon": "square-fill"
+    },
+    "[Rout]": {
+      "background": "#fcc600eb",
+      "iconColour": "#fcc600eb",
+      "icon": "square-fill"
     }
   },
   "todo-tree.highlights.useColourScheme": true
