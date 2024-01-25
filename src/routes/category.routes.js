@@ -12,7 +12,7 @@ import {
   deleteCategoryValidator,
   getCategoryValidator,
   updateCategoryValidator,
-} from "../../utils/validator/category.middleware.js";
+} from "../../utils/validator/category.validator.js";
 
 const categoryRouter = express.Router();
 

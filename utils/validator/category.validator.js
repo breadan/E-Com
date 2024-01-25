@@ -1,4 +1,4 @@
-//error from out express
+//FIXME 2  error from out express
 //to handel any rejection outSide DB
 
 import { check } from "express-validator";

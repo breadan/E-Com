@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import asyncHandler from "express-async-handler";
 import { ApiError } from "../../../utils/apiError.js";
-import SubCategory from "../subCategory/subCategory.controller.js";
+import { SubCategory } from "../../../models/subCategory.model.js";
 
 /*
  * @desc create a new subCategory
@@ -18,4 +18,6 @@ const createSubCategory = asyncHandler(async (req, res) => {
   });
   res.status(200).json({ data: newSubCategory });
 });
+
+export { createSubCategory };
 //******************************************************************* */

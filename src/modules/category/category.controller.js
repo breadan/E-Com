@@ -3,6 +3,8 @@ import slugify from "slugify";
 import asyncHandler from "express-async-handler";
 import { ApiError } from "../../../utils/apiError.js";
 
+// TODO : "category2"
+
 /*
  * @desc create a new category
  * @route POST /api/v1/categories

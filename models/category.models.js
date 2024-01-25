@@ -1,5 +1,6 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
+// TODO : "category1"
 const categorySchema = new Schema(
   {
     name: {
@@ -14,10 +15,9 @@ const categorySchema = new Schema(
       lowercase: true,
     },
     image: String,
-    
   },
   { timestamps: true }
 );
 
-const Category = model('Category' , categorySchema)
-export  {Category};
+const Category = model("Category", categorySchema);
+export { Category };
