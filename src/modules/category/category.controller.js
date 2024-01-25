@@ -15,7 +15,7 @@ const createCategory = asyncHandler(async (req, res) => {
     return next(new ApiError(`Category Already Exists `, 404));
   } else {
     const newCategory = await Category.create({ name, slug: slugify(name) });
-    res.status(200).json({ newCategory });
+    res.status(200).json({ data: newCategory });
   }
 });
 //******************************************************************* */
@@ -74,15 +74,15 @@ const updateCategory = asyncHandler(async (req, res, next) => {
   if (!id) {
     return next(new ApiError(`Category not found this id ${id}`, 404));
   }
-  const newcategory = await Category.findOneAndUpdate(
+  const newCategory = await Category.findOneAndUpdate(
     { _id: id },
     { name, slug: slugify(name) },
     { returnOriginal: false }
   );
-  if (!newcategory) {
+  if (!newCategory) {
     return next(new ApiError(`Category not found this id ${id}`, 404));
   } else {
-    res.status(201).json({ data: newcategory });
+    res.status(201).json({ data: newCategory });
   }
 });
 

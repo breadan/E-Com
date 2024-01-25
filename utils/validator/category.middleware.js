@@ -10,8 +10,8 @@ const getCategoryValidator = [
   validatorMiddleware, //call it to send error to it//it catch error from here
 ];
 
-//category
-const categoryValidate = [
+//create category
+const createCategoryValidator = [
   check("name")
     .notEmpty()
     .withMessage("Category Required")
@@ -19,7 +19,22 @@ const categoryValidate = [
     .withMessage("Too short")
     .isLength({ max: 32 })
     .withMessage("Too Long"),
-    validatorMiddleware,
+  validatorMiddleware,
 ];
 
-export { getCategoryValidator, categoryValidate };
+const updateCategoryValidator = [
+  check("id").isMongoId().withMessage("Invalid Category Id"),
+  validatorMiddleware,
+];
+
+const deleteCategoryValidator = [
+  check("id").isMongoId().withMessage("Invalid Category Id"),
+  validatorMiddleware,
+];
+
+export {
+  getCategoryValidator,
+  createCategoryValidator,
+  updateCategoryValidator,
+  deleteCategoryValidator,
+};

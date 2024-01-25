@@ -1,4 +1,4 @@
-import categoryRouter from "./src/routes/category.route.js";
+import categoryRouter from "./src/routes/category.routes.js";
 import "./config/connection.js";
 import "dotenv/config";
 import morgan from "morgan";
