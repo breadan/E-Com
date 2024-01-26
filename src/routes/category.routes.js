@@ -1,45 +1,44 @@
-import { Router } from "express";
 import {
   createCategory,
   deleteCategory,
   getCategories,
   getSpecificCategory,
   updateCategory,
-} from "../modules/category/category.controller.js";
-import express from "express";
+} from '../modules/category/category.controller.js';
+import express from 'express';
 import {
   createCategoryValidator,
   deleteCategoryValidator,
   getCategoryValidator,
   updateCategoryValidator,
-} from "../../utils/validator/category.validator.js";
+} from '../../utils/validator/category.validator.js';
 
 const categoryRouter = express.Router();
 //MARK
 categoryRouter.post(
-  "/api/v1/categories",
+  '/api/v1/categories',
   createCategoryValidator,
-  createCategory
+  createCategory,
 );
 //MARK
-categoryRouter.get("/api/v1/categories", getCategories);
+categoryRouter.get('/api/v1/categories', getCategories);
 //MARK
 categoryRouter.get(
-  "/api/v1/categories/:id",
+  '/api/v1/categories/:id',
   getCategoryValidator,
-  getSpecificCategory
+  getSpecificCategory,
 );
 //MARK
 categoryRouter.put(
-  "/api/v1/categories/:id",
+  '/api/v1/categories/:id',
   updateCategoryValidator,
-  updateCategory
+  updateCategory,
 );
 //MARK
 categoryRouter.delete(
-  "/api/v1/categories/:id",
+  '/api/v1/categories/:id',
   deleteCategoryValidator,
-  deleteCategory
+  deleteCategory,
 );
 
 export default categoryRouter;

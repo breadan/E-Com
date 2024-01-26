@@ -44,5 +44,6 @@
       "icon": "square-fill"
     }
   },
-  "todo-tree.highlights.useColourScheme": true
+  "todo-tree.highlights.useColourScheme": true,
+  "cSpell.words": ["autogen"]
 }

@@ -1,7 +1,7 @@
-import slugify from "slugify";
-import asyncHandler from "express-async-handler";
-import { ApiError } from "../../../utils/apiError.js";
-import { SubCategory } from "../../../models/subCategory.model.js";
+import slugify from 'slugify';
+import asyncHandler from 'express-async-handler';
+import { ApiError } from '../../../utils/apiError.js';
+import { SubCategory } from '../../../models/subCategory.model.js';
 
 /*
  * @desc create a new subCategory
@@ -51,7 +51,7 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
  */
 const getSpecificSubCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
-  const subCategory = await SubCategory.findById(id).select("-_id");
+  const subCategory = await SubCategory.findById(id).select('-_id');
   if (!subCategory) {
     //  return res.status(404).json({ error: "Category not found" });
     return next(new ApiError(`SubCategory not found this id ${id}`, 404));
@@ -94,7 +94,7 @@ const deleteSubCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const subCategory = await SubCategory.findByIdAndDelete(id);
   if (subCategory) {
-    res.status(204).json({ message: "delete SubCategory successfully" });
+    res.status(204).json({ message: 'delete SubCategory successfully' });
   } else {
     return next(new ApiError(`SubCategory not found this id ${id}`, 500));
   }
