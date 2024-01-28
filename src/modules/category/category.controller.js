@@ -1,7 +1,7 @@
-import { Category } from "../../../models/category.models.js";
-import slugify from "slugify";
-import asyncHandler from "express-async-handler";
-import { ApiError } from "../../../utils/apiError.js";
+import { Category } from '../../../models/category.models.js';
+import slugify from 'slugify';
+import asyncHandler from 'express-async-handler';
+import { ApiError } from '../../../utils/apiError.js';
 
 // TODO : "category2"
 
@@ -33,7 +33,7 @@ const getCategories = asyncHandler(async (req, res, next) => {
   const skip = (page - 1) * limit;
 
   const categories = await Category.find({})
-    // .select("-_id")
+    // .select('-_id')
     .skip(skip)
     .limit(limit);
   if (!categories) {
@@ -54,7 +54,7 @@ const getCategories = asyncHandler(async (req, res, next) => {
  */
 const getSpecificCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
-  const category = await Category.findById(id).select("-_id");
+  const category = await Category.findById(id).select('-_id');
   if (!category) {
     //  return res.status(404).json({ error: "Category not found" });
     return next(new ApiError(`Category not found this id ${id}`, 404));
@@ -79,7 +79,7 @@ const updateCategory = asyncHandler(async (req, res, next) => {
   const newCategory = await Category.findOneAndUpdate(
     { _id: id },
     { name, slug: slugify(name) },
-    { returnOriginal: false }
+    { returnOriginal: false },
   );
   if (!newCategory) {
     return next(new ApiError(`Category not found this id ${id}`, 404));
@@ -101,7 +101,7 @@ const deleteCategory = asyncHandler(async (req, res, next) => {
   if (!category) {
     return next(new ApiError(`Category not found this id ${id}`, 500));
   } else {
-    res.status(204).json({ message: "delete category successfully" });
+    res.status(204).json({ message: 'delete category successfully' });
   }
 });
 
