@@ -30,10 +30,13 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
   const limit = req.query.limit * 1 || 5;
   const skip = (page - 1) * limit;
 
+  console.log(req.params.categoryId);
+
   const subCategories = await SubCategory.find({})
     // .select("-_id")
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate({ path: 'category', select: 'name -_id' });
   if (!subCategories) {
     return next(new ApiError(`subCategory not found `, 404));
   } else {
@@ -51,7 +54,10 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
  */
 const getSpecificSubCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
-  const subCategory = await SubCategory.findById(id).select('-_id');
+  const subCategory = await SubCategory.findById(id).populate({
+    path: 'category',
+    select: 'name -_id',
+  });
   if (!subCategory) {
     //  return res.status(404).json({ error: "Category not found" });
     return next(new ApiError(`SubCategory not found this id ${id}`, 404));
@@ -75,7 +81,7 @@ const updateSubCategory = asyncHandler(async (req, res, next) => {
   const newSubCategory = await SubCategory.findOneAndUpdate(
     { _id: id },
     { name, slug: slugify(name), category },
-    { returnOriginal: false }
+    { returnOriginal: false },
   );
   if (!newSubCategory) {
     return next(new ApiError(`SubCategory not found this id ${id}`, 404));

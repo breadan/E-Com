@@ -12,8 +12,11 @@ import {
   getCategoryValidator,
   updateCategoryValidator,
 } from '../../utils/validator/category.validator.js';
+import subCategoryRouter from './subCategory.routes.js';
 
 const categoryRouter = express.Router();
+//to handel the category child routes 1
+categoryRouter.use('/:categoryId/subcategories', subCategoryRouter);
 //MARK
 categoryRouter.post(
   '/api/v1/categories',

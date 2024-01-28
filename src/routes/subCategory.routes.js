@@ -1,49 +1,45 @@
-import express from "express";
+import express from 'express';
 import {
   createSubCategory,
   deleteSubCategory,
   getSpecificSubCategory,
   getSubCategories,
   updateSubCategory,
-} from "../modules/subCategory/subCategory.controller.js";
+} from '../modules/subCategory/subCategory.controller.js';
 import {
   createSubCategoryValidator,
   deleteSubCategoryValidator,
   getSubCategoryValidator,
   updateSubCategoryValidator,
-} from "../../utils/validator/subCategory.validator.js";
+} from '../../utils/validator/subCategory.validator.js';
 
-const subCategoryRouter = express.Router();
+const subCategoryRouter = express.Router({ mergeParams: true });
 
 //[x] post: /subCategory
 subCategoryRouter.post(
-  "/api/v1/createSubCategory",
+  '/api/v1/createSubCategory',
   createSubCategoryValidator,
-  createSubCategory
+  createSubCategory,
 );
 
 //[x] get: /subCategories
-subCategoryRouter.get(
-  "/api/v1/getSubCategories",
-  getSubCategoryValidator,
-  getSubCategories
-);
+subCategoryRouter.get('/api/v1/getSubCategories', getSubCategories);
 //[x] get:id /subCategories
 subCategoryRouter.get(
-  "/api/v1/subCategory/:id",
+  '/api/v1/subCategory/:id',
   getSubCategoryValidator,
-  getSpecificSubCategory
+  getSpecificSubCategory,
 );
 //[x] get:id /subCategories
 subCategoryRouter.put(
-  "/api/v1/updateSubCategory/:id",
+  '/api/v1/updateSubCategory/:id',
   updateSubCategoryValidator,
-  updateSubCategory
+  updateSubCategory,
 );
 //[x] get:id /subCategories
 subCategoryRouter.delete(
-  "/api/v1/deleteSubCategory/:id",
+  '/api/v1/deleteSubCategory/:id',
   deleteSubCategoryValidator,
-  deleteSubCategory
+  deleteSubCategory,
 );
 export default subCategoryRouter;

@@ -10,9 +10,10 @@ import { ApiError } from './utils/apiError.js';
 import { globalError } from './src/middleware/err.Middleware.js';
 import subCategoryRouter from './src/routes/subCategory.routes.js';
 // import swaggerUi from 'swagger-ui-express';
-// import SwaggerDoc from './docs/swagger.json';
+// import swaggerJSDoc from 'swagger-jsdoc';
 
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(SwaggerDoc));
+// const openApiSpecification = swaggerJSDoc(Options);
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpecification));
 
 const port = process.env.PORT || 8000;
 const mode = process.env.NODE_ENV;
