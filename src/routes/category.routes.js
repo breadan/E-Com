@@ -16,7 +16,10 @@ import subCategoryRouter from './subCategory.routes.js';
 
 const categoryRouter = express.Router();
 //to handel the category child routes 1
-categoryRouter.use('/:categoryId/subcategories', subCategoryRouter);
+categoryRouter.get(
+  'api/v1/category/:categoryId/getSubCategories',
+  subCategoryRouter,
+);
 //MARK
 categoryRouter.post(
   '/api/v1/categories',
