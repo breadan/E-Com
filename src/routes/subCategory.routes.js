@@ -23,8 +23,8 @@ subCategoryRouter.post(
 );
 
 //[x] get: /subCategories
-subCategoryRouter.get('/api/v1/getSubCategories', getSubCategories);
-//[x] get:id /subCategories
+subCategoryRouter.get('/', getSubCategories); //[x] get:id /subCategories
+
 subCategoryRouter.get(
   '/api/v1/subCategory/:id',
   getSubCategoryValidator,
