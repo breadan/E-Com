@@ -9,11 +9,6 @@ import dotenv from 'dotenv';
 import { ApiError } from './utils/apiError.js';
 import { globalError } from './src/middleware/err.Middleware.js';
 import subCategoryRouter from './src/routes/subCategory.routes.js';
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerJSDoc from 'swagger-jsdoc';
-
-// const openApiSpecification = swaggerJSDoc(Options);
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpecification));
 
 const port = process.env.PORT || 8000;
 const mode = process.env.NODE_ENV;
@@ -33,8 +28,6 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/', (req, res) => res.send(' World!'));
 
 app.all('*', (req, res, next) => {
-  // const err = new Error(`Cant find this rout: ${req.originalUrl}`);
-  // next(err.message);
   next(new ApiError(`Cant find this rout: ${req.originalUrl}`, 400));
 });
 

@@ -99,10 +99,10 @@ const updateSubCategory = asyncHandler(async (req, res, next) => {
 const deleteSubCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const subCategory = await SubCategory.findByIdAndDelete(id);
-  if (subCategory) {
-    res.status(204).json({ message: 'delete SubCategory successfully' });
-  } else {
+  if (!subCategory) {
     return next(new ApiError(`SubCategory not found this id ${id}`, 500));
+  } else {
+    return res.json({ message: 'delete SubCategory successfully' });
   }
 });
 export {
