@@ -25,6 +25,13 @@ const createSubCategory = asyncHandler(async (req, res) => {
  * @route get /api/v1/subCategories
  * @access public
  */
+const createFilterObject = (req, res, next) => {
+  let filterObject = {};
+  if (req.params.categoryId) filterObject = { category: req.params.categoryId };
+  req.filterObj = filterObject;
+  next();
+};
+
 const getSubCategories = asyncHandler(async (req, res, next) => {
   const page = req.query.page * 1 || 1;
   const limit = req.query.limit * 1 || 5;
@@ -32,7 +39,7 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
 
   console.log(req.params.categoryId);
 
-  const subCategories = await SubCategory.find({})
+  const subCategories = await SubCategory.find(req.filterObj)
     // .select("-_id")
     .skip(skip)
     .limit(limit)
@@ -111,4 +118,5 @@ export {
   getSpecificSubCategory,
   updateSubCategory,
   deleteSubCategory,
+  createFilterObject,
 };

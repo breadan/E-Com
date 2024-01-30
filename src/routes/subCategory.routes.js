@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  createFilterObject,
   createSubCategory,
   deleteSubCategory,
   getSpecificSubCategory,
@@ -23,7 +24,7 @@ subCategoryRouter.post(
 );
 
 //[x] get: /subCategories
-subCategoryRouter.get('/', getSubCategories); //[x] get:id /subCategories
+subCategoryRouter.get('/', createFilterObject, getSubCategories); //[x] get:id /subCategories
 
 subCategoryRouter.get(
   '/api/v1/subCategory/:id',
