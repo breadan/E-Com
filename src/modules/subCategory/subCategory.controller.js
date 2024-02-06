@@ -42,8 +42,8 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
   const subCategories = await SubCategory.find(req.filterObj)
     // .select("-_id")
     .skip(skip)
-    .limit(limit)
-    .populate({ path: 'category', select: 'name -_id' });
+    .limit(limit);
+  // .populate({ path: 'category', select: 'name -_id' });
   if (!subCategories) {
     return next(new ApiError(`subCategory not found `, 404));
   } else {
