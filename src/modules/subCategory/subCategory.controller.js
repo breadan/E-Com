@@ -8,7 +8,14 @@ import { SubCategory } from '../../../models/subCategory.model.js';
  * @route POST /api/v1/subCategory
  * @access public
  */
+//middleware to check if category in body or in params
+const setCategoryIdParams = (req, res, next) => {
+  //nested Route
+  if (!req.body.category) req.body.category = req.params.categoryId;
+  next();
+};
 const createSubCategory = asyncHandler(async (req, res) => {
+  //create subcategory
   const { name, category } = req.body;
 
   const newSubCategory = await SubCategory.create({
@@ -25,10 +32,12 @@ const createSubCategory = asyncHandler(async (req, res) => {
  * @route get /api/v1/subCategories
  * @access public
  */
+//nested Route
 const createFilterObject = (req, res, next) => {
   let filterObject = {};
   if (req.params.categoryId) filterObject = { category: req.params.categoryId };
-  req.filterObj = filterObject;
+  // req.filterObj = filterObject;
+  console.log(filterObject);
   next();
 };
 
@@ -37,9 +46,7 @@ const getSubCategories = asyncHandler(async (req, res, next) => {
   const limit = req.query.limit * 1 || 5;
   const skip = (page - 1) * limit;
 
-  console.log(req.params.categoryId);
-
-  const subCategories = await SubCategory.find(req.filterObj)
+  const subCategories = await SubCategory.find(req.filterObject)
     // .select("-_id")
     .skip(skip)
     .limit(limit);
@@ -119,4 +126,5 @@ export {
   updateSubCategory,
   deleteSubCategory,
   createFilterObject,
+  setCategoryIdParams,
 };

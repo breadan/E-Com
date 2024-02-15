@@ -5,6 +5,7 @@ import {
   deleteSubCategory,
   getSpecificSubCategory,
   getSubCategories,
+  setCategoryIdParams,
   updateSubCategory,
 } from '../modules/subCategory/subCategory.controller.js';
 import {
@@ -14,11 +15,13 @@ import {
   updateSubCategoryValidator,
 } from '../../utils/validator/subCategory.validator.js';
 
+//nested Route
 const subCategoryRouter = express.Router({ mergeParams: true });
 
 //[x] post: /subCategory
 subCategoryRouter.post(
   '/api/v1/createSubCategory',
+  setCategoryIdParams,
   createSubCategoryValidator,
   createSubCategory,
 );
